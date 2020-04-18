@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>D3 PSET</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.4/d3.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+		<style type="text/css">
+
+		titlestyling {
+			font-family: 'Arial', sans-serif;
+			/* color:#353536; */
+      font-size:18px;
+			font-weight:300;
+		 }
+		 subtitle {
+ 			font-family: 'Arial', sans-serif;
+ 			/* color:#353536; */
+      font-size:14px;
+ 			font-weight:100;
+ 		 }
+
+		.countries {
+			font-family: 'Arial', sans-serif;
+			/* color:#353536; */
+      font-size:14px;
+			/*font-weight:300; */
+		}
+		.ylabel {
+			font-family: 'Arial', sans-serif;
+			font-size: 30px
+
+		}
+
+		</style>
+		</head>
+		<body>
+
+		<div id = "title">
+			<br>
+			<titlestyling> Agricultural Land in 2016 by Country, As Percentage of Total Land <titlestyling>
+			<br>
+			<subtitle> Source: World Bank <subtitle>
+		</div>
+
+		<div id="main">
+
+		</div>
+		<script type="text/javascript">
+			var width = 2000;
+			var height = 2000;
+
+			agriculturedata = [["Brazil", 33.9],["Canada", 6.9],["Costa Rica", 34.5],["Denmark", 62],["Fiji", 23.3],["France", 52.4],["Greenland", .6],["Italy", 43.2],["Mali",33.8],["Netherlands",53.3]];
+
+			var svg = d3.select("div#main")
+						.append("svg")
+						.attr("width", width)
+						.attr("height", height);
+
+			svg.selectAll("rect")
+               .data(agriculturedata)
+               .enter()
+							 .append("rect")
+							 //bar spacing and beginning y position
+							 .attr("y", function(d, i) {
+                       return i*(30+20) + (30+50);
+                  })
+								//margin from left
+							 .attr("x", 50+180)
+							 //bar length based on data
+							 .attr("width", function(d) {
+                       return d[1]*4;
+                  })
+								//bar width
+							 .attr("height", (20*2))
+               .attr("fill", "green")
+							 .attr("opacity", .7)
+							 .attr("countryname", function(d) {
+                       return d[0];
+                  })
+
+							svg.append("text")
+										.attr("y", 60)
+										.attr("x", -170)
+									 .attr("class", "ylabel")
+									 .attr("text-anchor", "end")
+									 .text("Countries")
+									 .attr("transform", "translate(20, 80) rotate(-90)");
+
+									 svg.selectAll("g").data(agriculturedata).enter().append("text")
+									 							.attr("class", "countries")
+									 							.attr("text-anchor", "end")
+									 							.attr("x", 200)
+									 							.attr("y", function(d, i) {
+									 											return i*(30+20) + (30+75);
+									 								 })
+									 							.text(function (d){
+									 								return d[0];
+									 							})
+
+													svg.selectAll("g").data(agriculturedata).enter().append("text")
+																			 .attr("class", "countries")
+																			 .attr("text-anchor", "middle")
+																			 .attr("y", function(d, i) {
+																							 return i*(30+20) + (30+75);
+																					})
+																				.attr("x", function (d) {
+																							return (d[1]*4)+263;
+																							})
+																			 .text(function (d){
+																				 return d[1] + "%";
+																			 })
+
+			// Create y-axis
+			svg.append("line")
+						.attr("x1", 230)
+						.attr("y1", 70)
+						.attr("x2", 230)
+						.attr("y2", 580)
+						.attr("stroke-width", 2)
+						.attr("stroke", "black");
+
+			</script>
+		</div>
+	</body>
+</html>
