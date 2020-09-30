@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>project accessible nyc</title>
+   	<script src="https://d3js.org/d3.v5.min.js"></script>
+   	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gelasio:300,400,500,600" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+    <style>
+
+		p {
+			font-family: 'Open Sans', sans-serif;
+			color:#353536;
+      font-size:20px;
+			font-weight:300;
+      /* margin-left:20px; */
+		}
+
+    .container2 {
+      /* width:100%;
+      height:650px; */
+      padding-top:30px;
+      padding-left:0px;
+      padding-right:0px;
+    }
+
+    .text-block {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background-color: black;
+      color: white;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .hover{
+      opacity: 1.0;
+    }
+
+		svg {
+			width:100%;
+			height:650px;
+      padding-top:20px;
+			padding-left:0px;
+			padding-right:0px;
+		}
+
+
+		h1 {
+      font-family: 'Gelasio', serif;
+			font-size:50px;
+			font-weight:600;
+			line-height:1.3;
+      /* margin-left:20px; */
+		}
+
+    span{
+    color: #e91e63
+    }
+
+    h2 {
+      font-family: 'Gelasio', serif;
+			font-size:35px;
+			font-weight:600;
+			line-height:1.3;
+      /* margin-left:20px; */
+		}
+
+    h3 {
+      font-family: 'Open Sans', sans-serif;
+      font-size:15px;
+      font-weight:300;
+      line-height:1;
+      color: lightgray;
+      /* margin-left:20px; */
+    }
+
+    #firstvisualdiv, #secondvisualdiv {
+        position: -webkit-sticky;
+          position: sticky;
+          top: 4rem;
+    	}
+
+      img.sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+      }
+
+      h4 {
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        top: 0;
+        font-family: 'Open Sans', sans-serif;
+        font-size:15px;
+        font-weight:300;
+        line-height:1;
+        color: lightgray;
+        padding-left: 0px;
+        z-index: 10;
+      }
+
+/* Changable font */
+      h5 {
+        font-family: 'Gelasio', serif;
+        font-size:28px;
+        font-weight:600;
+        line-height:1.3;
+        /* margin-left:20px; */
+      }
+
+      h6.sticky {
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        /* top: 0; */
+        font-family: 'Open Sans', sans-serif;
+        font-size:15px;
+        font-weight:300;
+        line-height:1;
+        color: lightgray;
+        padding-left: 0px;
+        padding-top: 10px;
+        top: 1rem;
+      }
+
+   .object1opacity, .object2opacity, .object3opacity, .object4opacity, .object5opacity, .object6opacity, .object7opacity, .object8opacity, .object9opacity {
+        opacity:0;
+        transition: opacity 1s;
+         -webkit-transition: opacity 1s;
+        }
+
+		.active {
+        	opacity:1;
+          transition: opacity 1s;
+           -webkit-transition: opacity 1s;
+    	}
+
+      div.tooltip {
+          position: relative;
+          text-align: left;
+          width: 300px;
+          height: 10px;
+          padding-left: 20px;
+          font-family: 'Gelasio', serif;
+          font-size:20px;
+          /* font: 24px sans-serif; */
+          background: white;
+          border: 0px;
+          border-radius: 4px;
+          pointer-events: none;
+      }
+
+      nav {
+  			font-size:15px;
+  			font-weight:200;
+  			line-height:1.3;
+        border-bottom: 1px solid lightgray;
+
+  		}
+
+      .navbar-nav .nav-item.active .nav-link,
+      .navbar-nav .nav-item:hover .nav-link {
+        color: #e91e63;
+        /* border-bottom: 1px solid #f50057 */
+      }
+}
+
+    body.container {
+    padding-top: 20px;
+    background-color: white;
+    }
+
+	</style>
+</head>
+<body>
+  <nav class="navbar fixed-top navbar-expand navbar-light bg-white">
+    <a class="navbar-brand" href="#">project accessible nyc</a>
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span> -->
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                      <a class="nav-link mr-md-5" href="#">about us</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link mr-md-5" href="#">data</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link mr-md-5" href="#">center for architecture</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">contact</a>
+                  </li>
+              </ul>
+    </div>
+  </nav>
+
+  <div class="container2">
+      <img src="https://pcafferky.github.io/BW_elevator_wide1.jpg" alt="Broken Elevator"  style="width:100%;">
+  </div>
+  <main role="main" class="container" >
+
+<!-- First Div -->
+     <div class="row">
+       <div class="col-12">
+         <br>
+         <h1>New York City's  Subway has an <br> <span>Accessibility</span> Problem
+         </h1>
+         <h3>authors: patricia cafferky + angelica door
+         </h3>
+       </div>
+    <!-- Left Column -->
+      <div class="col-6">
+     		<br><br>
+        <div class="col-10">
+       	  <p>Project Accessible NYC evaluates which subway stations in New York City are inaccessible compared to demographic data on populations of elderly and disabled New Yorkers and families with young children who live within the stations' walksheds. The project then questions if there is a correlation between which stations are accessible and other factors, such as the race and socioeconomic status of residents in the stations' walksheds or station use rates. Based on this, we offer an idea of which subway stations should be prioritized for ADA compliance renovations or should be serviced with additional bus routes.</p>
+          <br>
+          <p>The map to the right shows all of the subway stations in NYC highlighted in<span> pink</span>. Scroll down to reveal which stations are ADA compliant, which are not, and which are planned for renovation, as well as how these stations map onto populations that likely need elevator access to subway stations the most.</p>
+        </div>
+        <!-- <div class="col-2">
+        </div> -->
+        <br><br>
+        <br><br>
+         <div class="col-12">
+          <h2 id="change1">78% of SUBWAY <br> STATIONS ARE NOT <br> HANDICAP ACCESSIBLE </h2>
+        </div>
+        <div class="col-10">
+        <br><br>
+         	<h5>(Scroll over a station to see if it's accessible)
+          </h5>
+          <br><br>
+          <p>You'll quickly notice that most stations in the NYC subway system are not accessible. In the US, this is denoted with the term "ADA", which refers to compliance with the Americans with Disabilities Act. The ADA prohibits discrimination against people with disabilities, which includes providing equal access to transportation (U.S. Department of Labor; dol.gov). As you can see, most stations in the city do not meet this standard.
+          </p>
+         	<br><br><br>
+        </div>
+        <div class="col-12">
+         <h2 id="change5">THE MTA ANNOUNCED PLANS TO MAKE 70 STATIONS ADA COMPLIANT </h2>
+        </div>
+        <div class="col-10">
+         <br>
+         <p>The MTA plans to allocate $5.2 billion dollars under their 2020-2024 capital plan to bring 70 subway stations up to ADA compliance. The MTA's Capital Program Review Board will be considering the plan for approval. In this project, we question how the 70 stations were selected, and whether they are the best station choices, given the primary users of the stations (mta.info).
+         </p>
+         <br><br><br>
+        </div>
+        <div class="col-12">
+        <h2 id="change2">13% of NEW YORKERS <br> ARE OVER AGE 65</h2>
+        </div>
+        <div class="col-10">
+          <br>
+          <p>While not a direct correlation to those who need accessible subway stations, elderly people are more likely to have an ambulatory disability or become temporarily disabled due to injury. Some neighborhoods have higher elderly populations and should be focused on for ADA station renovations.
+          </p>
+          <br>
+          <p>The stations with the highest population of residents over age 65 in their walksheds that are NOT ACCESSIBLE and are NOT BEING RENOVATED are: <span> East Broadway Station </span> (F train), <span> 90th St-Elmhurst Ave Station </span> (7 train), <span> 1st Ave Station </span> (L train), <span> 170th St Station </span> (B-D trains), and <span> Brighton Beach Station </span> (B-Q trains).</p>
+          <br><br><br>
+        </div>
+      <div class="col-12">
+        <h2 id="change3">6.7% of NEW YORKERS <br> REPORT HAVING AN <br> AMBULATORY DISABILITY </h2>
+      </div>
+      <div class="col-10">
+        <br>
+       	<p>The poverty rate of working-age New Yorkers with a disability is <span> 30.1% </span>, as compared to an 11.9% poverty rate for New Yorkers without a disability.</p>
+        <img src="https://pcafferky.github.io/NYC_Disability_Graphs.png" alt="Poverty Rates" style="width:500px;height:241.6px;">
+       	<br><br>
+        <p>This means a group that needs affordable transit options the most is also frequently physically unable to access them.</p>
+        <br>
+        <p>The stations with the highest population of residents who self-identify as disabled in their walksheds that are NOT ACCESSIBLE and are NOT BEING RENOVATED are: <span> East Broadway Station </span> (F train), <span> West Farms Sq - East Tremont Ave Station </span> (2&5 train), <span> 1st Ave Station </span> (L train), <span> 170th St Station </span> (B-D trains), <span> 67th Ave Station </span> (E-M-R trains), and <span> Fordham Road Station </span> (B-D trains).</p>
+        <br><br><br>
+        <h2 id="change4">6.5% of NEW YORKERS <br> ARE CHILDREN AGE 5 AND UNDER </h2>
+        <br>
+        <p> The accessibility of stations impacts safety of station use. Carrying strollers up and down stairs or helping small children can make navigating stairs a hazard, as New Yorkers know only too well. Making stations accessible helps not only the elderly and disabled, but also families with young children. </p>
+        <br>
+        <p> At some point, most New Yorkers will need to use an elevator. Whether that's because of temporary disability like a sprained ankle, the carrying of a bicycle, or having small children with them, making subway stations ADA compliant is to the advantage of everyone, while also making affordable transit more equitable. </p>
+        <br>
+        <p>The stations with the highest populations of children under age 5 which in their walksheds that are NOT ACCESSIBLE and are NOT BEING RENOVATED are: <span> Flushing Ave Station </span> (G train), <span> 103rd St - Corona Plaza Station </span> (7 train), <span> 5oth St Station </span> (D train), <span> Ft Hamilton Pkwy Station </span> (D train), <span> 111th St Station </span> (7 train), and <span> Fordham Road Station </span> (B-D trains).</p>
+        <br><br>
+        <br><br>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-6">
+      <br><br>
+      <div id="firstvisualdiv">
+         <!-- <img class="sticky"> -->
+         <img src="https://pcafferky.github.io/AAR_Legend.jpg" alt="Legend"  style="width:100%;">
+      </div>
+    </div>
+  </div>
+
+  </main><!-- /.container -->
+  <div class="container2">
+      <img src=" https://pcafferky.github.io/BW_stroller1.jpg" alt="Stroller on Stairs"  style="width:100%;">
+  </div>
+  <main role="main" class="container" >
+
+
+<!-- First Div -->
+     <div class="row">
+    <!-- Left Column -->
+      <div class="col-12">
+        <br><br>
+        <div class="col-12">
+          <h2 id="change10">IS THERE A CORRELATION BETWEEN <br> ACCESSIBILITY AND DEMOGRAPHICS?</h2>
+          <br>
+          <h5 id="change10">Populations by Subway Station Walkshed</h5>
+            <img src="https://pcafferky.github.io/AAR_Legend_Bubbles.jpg" alt="Bubble Legend"  style="width:200px;height:53.3px;">
+          <div id="secondvisualdiv">
+           <iframe src="https://adooraaa.github.io/AAR-Bubble-Chart/" height="1400" width="1200" frameborder = 0;></iframe>
+        </div>
+      </div>
+    </div>
+</main><!-- /.container -->
+</body>
+
+<script type="text/javascript">
+
+
+//Our D3 code will go here.
+
+var div = d3.select("div#firstvisualdiv").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+
+//2. Load the data:
+var NYCBoroughsurl = 'https://raw.githubusercontent.com/PCafferky/PCafferky.github.io/master/4_NYC_Boroughs.json'
+var StateLinesurl = 'https://raw.githubusercontent.com/PCafferky/PCafferky.github.io/master/2_NYC_States_geo.json'
+var NYCSubwayStationsurl = 'https://raw.githubusercontent.com/PCafferky/PCafferky.github.io/master/4_NYC_AllStations_geo.json'
+var NYCSubwayLinesurl = 'https://raw.githubusercontent.com/PCafferky/PCafferky.github.io/master/4_NYCSubwayLines_geo.json'
+var NYCWalkshedElderlysurl = 'https://raw.githubusercontent.com/PCafferky/PCafferky.github.io/master/4_NYC_StationWalksheds_convert.json'
+var NYCWalkshedChildrensurl = 'https://raw.githubusercontent.com/PCafferky/PCafferky.github.io/master/4_NYC_StationWalksheds_convert.json'
+var NYCWalkshedDisabledsurl = 'https://raw.githubusercontent.com/PCafferky/PCafferky.github.io/master/4_NYC_StationWalksheds_convert.json'
+
+
+
+
+//3. Create SVG Canvas
+//3.1 Width and height of the whole visualization
+var width = 600
+var height = 650
+
+// SVG NUMBER 1: MAP OF STATIONS
+
+var svg = d3.select("div#firstvisualdiv")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            // .attr("class", "object2opacity")
+
+var StatesG=svg.append("g")
+var CensusTractsG=svg.append("g")
+var WalkshedsElderlyG=svg.append("g")
+                  .attr("class", "object4opacity")
+var WalkshedsDisabledG=svg.append("g")
+                  .attr("class", "object5opacity")
+var WalkshedsChildrenG=svg.append("g")
+                  .attr("class", "object6opacity")
+var BoroughG=svg.append("g")
+var SuwayLineG=svg.append("g")
+var SuwayStationsPinkG=svg.append("g")
+var SuwayStationsG=svg.append("g")
+                  .attr("class", "object2opacity")
+var SuwayStationsLightG=svg.append("g")
+                  .attr("class", "object8opacity")
+var SuwayStationsBigG=svg.append("g")
+                  .attr("class", "object7opacity")
+
+
+var albersProjection = d3.geoAlbers()
+  .scale(90000)
+  .rotate([74.06, 0])
+  .center([0,40.88])
+  .translate([width/10, height/10])
+
+var geoPathBig = d3.geoPath()
+    .projection(albersProjection)
+    .pointRadius(10)
+
+var geoPath = d3.geoPath()
+  .projection(albersProjection)
+  .pointRadius(3)
+
+
+d3.json(StateLinesurl).then(function(NYCNeighbor){
+  StatesG.selectAll("path")
+    .data(NYCNeighbor.features)
+    .enter()
+    .append("path")
+    .attr("fill", "none")
+    .attr("stroke", "#bdbdbd")
+    .attr("d", geoPath)
+})
+
+// ELEDERLY POPULATION
+d3.json(NYCWalkshedElderlysurl).then(function(NYCNeighbor){
+  WalkshedsElderlyG.selectAll("path")
+    .data(NYCNeighbor.features)
+    .enter()
+    .append("path")
+    .attr("fill", function(d) {
+         if (d.properties.SUM_Pro_Ov >= 2616) {return "#757575"}
+         else if (d.properties.SUM_Pro_Ov < 2616 && d.properties.SUM_Pro_Ov >= 1527) {return "#bdbdbd"}
+         else if (d.properties.SUM_Pro_Ov < 1527 && d.properties.SUM_Pro_Ov >= 699) {return "#e0e0e0"}
+         else {return "#eeeeee" };
+       })
+    .attr("stroke", function(d) {
+         if (d.properties.FacilityID == 1486 || d.properties.FacilityID == 1788 || d.properties.FacilityID == 1565 || d.properties.FacilityID == 1660 || d.properties.FacilityID == 1746 ) {return "#ffff00"}
+         else {return "white" };
+       })
+       .attr("stroke-opacity", function(d) {
+            if (d.properties.FacilityID == 1486 || d.properties.FacilityID == 1788 || d.properties.FacilityID == 1565 || d.properties.FacilityID == 1660 || d.properties.FacilityID == 1746 ) {return "1"}
+            else {return ".5" };
+          })
+    .attr("stroke-width",function(d) {
+         if (d.properties.FacilityID == 1486 || d.properties.FacilityID == 1788 || d.properties.FacilityID == 1565 || d.properties.FacilityID == 1660 || d.properties.FacilityID == 1746 ) {return "1.5"}
+         else {return ".8" };
+       })
+    .attr("d", geoPath)
+})
+
+// DISABLED POPULATION
+d3.json(NYCWalkshedDisabledsurl).then(function(NYCNeighbor){
+  WalkshedsDisabledG.selectAll("path")
+    .data(NYCNeighbor.features)
+    .enter()
+    .append("path")
+    .attr("fill", function(d) {
+         if ((((d.properties.SUM_Pro_Di)/(d.properties.SUM_Pro_Sa))*(d.properties.SUM_Pro_To)) >= 2152) {return "#757575"}
+         else if ((((d.properties.SUM_Pro_Di)/(d.properties.SUM_Pro_Sa))*(d.properties.SUM_Pro_To))  < 2152 && (((d.properties.SUM_Pro_Di)/(d.properties.SUM_Pro_Sa))*(d.properties.SUM_Pro_To)) >= 1306) {return "#bdbdbd"}
+         else if ((((d.properties.SUM_Pro_Di)/(d.properties.SUM_Pro_Sa))*(d.properties.SUM_Pro_To))  < 1306 && (((d.properties.SUM_Pro_Di)/(d.properties.SUM_Pro_Sa))*(d.properties.SUM_Pro_To))  >= 566) {return "#e0e0e0"}
+         else {return "#eeeeee" };
+       })
+     .attr("stroke", function(d) {
+          if (d.properties.FacilityID == 1691 || d.properties.FacilityID == 1788 || d.properties.FacilityID == 1565 || d.properties.FacilityID == 1595 || d.properties.FacilityID == 1486 || d.properties.FacilityID == 1682) {return "#ffff00"}
+          else {return "white" };
+        })
+        .attr("stroke-opacity", function(d) {
+             if (d.properties.FacilityID == 1691 || d.properties.FacilityID == 1788 || d.properties.FacilityID == 1565 || d.properties.FacilityID == 1595 || d.properties.FacilityID == 1486 || d.properties.FacilityID == 1682) {return "1"}
+             else {return ".5" };
+           })
+     .attr("stroke-width",function(d) {
+          if (d.properties.FacilityID == 1691 || d.properties.FacilityID == 1788 || d.properties.FacilityID == 1565 || d.properties.FacilityID == 1595 || d.properties.FacilityID == 1486 || d.properties.FacilityID == 1682) {return "1.5"}
+          else {return ".8" };
+        })
+    .attr("d", geoPath)
+})
+
+//CHILDREN POPULATION
+d3.json(NYCWalkshedChildrensurl).then(function(NYCNeighbor){
+  WalkshedsChildrenG.selectAll("path")
+    .data(NYCNeighbor.features)
+    .enter()
+    .append("path")
+    .attr("fill", function(d) {
+         if (d.properties.SUM_Pro_5l >= 1316) {return "#757575"}
+         else if (d.properties.SUM_Pro_5l < 1316 && d.properties.SUM_Pro_5l >= 819) {return "#bdbdbd"}
+         else if (d.properties.SUM_Pro_5l < 818 && d.properties.SUM_Pro_5l >= 329) {return "#e0e0e0"}
+         else {return "#eeeeee" };
+       })
+     .attr("stroke", function(d) {
+          if (d.properties.FacilityID == 1783 || d.properties.FacilityID == 1608 || d.properties.FacilityID == 1730 || d.properties.FacilityID == 1811 || d.properties.FacilityID == 1609 || d.properties.FacilityID == 1682) {return "#ffff00"}
+          else {return "white" };
+        })
+        .attr("stroke-opacity", function(d) {
+             if (d.properties.FacilityID == 1783 || d.properties.FacilityID == 1608 || d.properties.FacilityID == 1730 || d.properties.FacilityID == 1811 || d.properties.FacilityID == 1609 || d.properties.FacilityID == 1682) {return "1"}
+             else {return ".5" };
+           })
+     .attr("stroke-width",function(d) {
+          if (d.properties.FacilityID == 1783 || d.properties.FacilityID == 1608 || d.properties.FacilityID == 1730 || d.properties.FacilityID == 1811 || d.properties.FacilityID == 1609 || d.properties.FacilityID == 1682) {return "1.5"}
+          else {return ".8" };
+        })
+    .attr("d", geoPath)
+})
+
+d3.json(NYCBoroughsurl).then(function(NYCNeighbor){
+  BoroughG.selectAll("path")
+    .data(NYCNeighbor.features)
+    .enter()
+    .append("path")
+    .attr("fill", "none")
+    .attr("stroke", "#333")
+    .attr("d", geoPath)
+})
+
+d3.json(NYCSubwayLinesurl).then(function(NYCNeighbor){
+  SuwayLineG.selectAll("path")
+    .data(NYCNeighbor.features)
+    .enter()
+    .append("path")
+    .attr("fill", "none")
+    .attr("stroke", "#e91e63")
+    .attr("d", geoPath)
+})
+
+
+d3.json(NYCSubwayStationsurl).then(function(NYCNeighbor){
+  SuwayStationsPinkG.selectAll("path")
+    .data(NYCNeighbor.features)
+    .enter()
+    .append("path")
+    .attr("fill", "#e91e63")
+    .attr("d", geoPath)
+ })
+
+
+d3.json(NYCSubwayStationsurl).then(function(NYCNeighbor){
+  SuwayStationsG.selectAll("path")
+    .data(NYCNeighbor.features)
+    .enter()
+    .append("path")
+    .attr("fill", function(d) {
+         if (d.properties.ADA == 0) {return "black"}
+         else { return "#e91e63" };
+       })
+    .attr("d", geoPath)
+ })
+
+ d3.json(NYCSubwayStationsurl).then(function(NYCNeighbor){
+   SuwayStationsLightG.selectAll("path")
+     .data(NYCNeighbor.features)
+     .enter()
+     .append("path")
+     .attr("fill", function(d) {
+          if (d.properties.ADA == 0 && d.properties.ADA_New == 0) {return "black"}
+          else if (d.properties.ADA == 0 && d.properties.ADA_New == 1) {return "#f8bbd0"}
+          else { return "#e91e63" };
+        })
+     .attr("d", geoPath)
+  })
+
+
+d3.json(NYCSubwayStationsurl).then(function(NYCNeighbor){
+  SuwayStationsBigG.selectAll("path")
+    .data(NYCNeighbor.features)
+    .enter()
+    .append("path")
+    .attr("fill", function(d) {
+         if (d.properties.ADA == 0) {return "black"}
+         else { return "#e91e63" };
+       })
+    .attr("d", geoPathBig)
+    .attr("opacity", 0.4)
+    .attr("class", "incident")
+    .attr("class", "object1opacity")
+    .on("mouseover", function(d){
+      div.transition()
+        .duration(200)
+        .style("opacity", .9);
+      div.html(d.properties.name)
+          .style("left", (d3.event.pageX))
+          .style("top", (d3.event.pageY ));
+      d3.select(this).attr("class", "incident hover")
+      if (d.properties.ADA == 0) {return d3.select("h5").text(d.properties.name + " Station is NOT Accessible.")}
+      else { return d3.select("h5").text(d.properties.name + " Station is Accessible.") };
+    })
+    .on("mouseout", function(d){
+      div.transition()
+               .duration(500)
+               .style("opacity", 0);
+      d3.select("h5").text("(Scroll over a Station to see if it's Accessible)")
+      d3.select(this).attr("class", "object1opacity");
+    });
+  })
+
+
+var controller = new ScrollMagic.Controller();
+
+//var Scene2  duration:"100%"
+
+new ScrollMagic.Scene({triggerElement: "#change1"})
+            .setClassToggle(".object2opacity", "active")
+            .addTo(controller);
+
+new ScrollMagic.Scene({triggerElement: "#change1"})
+            .setClassToggle(".object7opacity", "active")
+            .addTo(controller);
+
+new ScrollMagic.Scene({triggerElement: "#change1"})
+            .setClassToggle(".object9opacity", "active")
+            .addTo(controller);
+
+new ScrollMagic.Scene({triggerElement: "#change5"})
+            .setClassToggle(".object8opacity", "active")
+            .addTo(controller);
+
+new ScrollMagic.Scene({triggerElement: "#change2"})
+            .setClassToggle(".object4opacity", "active")
+            .addTo(controller);
+
+new ScrollMagic.Scene({triggerElement: "#change3"})
+          .setClassToggle(".object5opacity", "active")
+          .addTo(controller);
+
+new ScrollMagic.Scene({triggerElement: "#change4"})
+          .setClassToggle(".object6opacity", "active")
+          .addTo(controller);
+
+  // new ScrollMagic.Scene({triggerElement: "#change3"})
+  //   .setClassToggle(".active", "object4opacity")
+  //   .addTo(controller);
+
+  // new ScrollMagic.Scene({triggerElement: "#change4"})
+  //   .setClassToggle(".object6opacity", "active")
+  //   .addTo(controller);
+
+
+</script>
+
+</body>
+</html>
