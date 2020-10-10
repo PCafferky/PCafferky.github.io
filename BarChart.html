@@ -17,12 +17,12 @@
   /* margin-left:20px; */
 }
 
-h3 {
+h4 {
   font-family: 'Open Sans', sans-serif;
   font-size:15px;
   font-weight:300;
   line-height:1;
-  color: lightgray;
+  /* color: lightgray; */
   /* margin-left:20px; */
 }
 
@@ -33,7 +33,7 @@ h3 {
 
   <!-- <h1>Business Closures by Neighborhood</h1> -->
 
-<h3>
+<h4>
 <!-- Add 2 buttons -->
 <button onclick="update('Count_Closed')">Number Closed</button>
 <button onclick="update('PercHundred')">Percent Closed</button>
@@ -41,7 +41,7 @@ h3 {
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
-</h3>
+</h4>
 </body>
 
 <script>
@@ -108,7 +108,7 @@ function update(selectedVar) {
         .attr("text-anchor", "end")
         .attr("transform", "rotate(-90)")
         .attr("y", -margin.left + 20)
-        .attr("x", -margin.top - height/100 )
+        .attr("x", -margin.top - height/100 + 25 )
         .attr("id", "h3")
         .text("Businesses (details by button selection)");
 
