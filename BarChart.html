@@ -31,7 +31,7 @@ h3 {
 </head>
 <body>
 
-  <h1>Business Closures by Neighborhood</h1>
+  <!-- <h1>Business Closures by Neighborhood</h1> -->
 
 <h3>
 <!-- Add 2 buttons -->
@@ -93,6 +93,24 @@ function update(selectedVar) {
     // Add Y axis
     y.domain([0, d3.max(data, function(d) { return +d[selectedVar] }) ]);
     yAxis.transition().duration(1000).call(d3.axisLeft(y));
+
+
+    // Add X axis label
+      svg.append("text")
+          .attr("text-anchor", "end")
+          .attr("x", width/2 + 40)
+          .attr("y", height + margin.top + 60)
+          .attr("id", "h3")
+          .text("Neighborhoods");
+
+    // Add Y axis label
+    svg.append("text")
+        .attr("text-anchor", "end")
+        .attr("transform", "rotate(-90)")
+        .attr("y", -margin.left + 20)
+        .attr("x", -margin.top - height/100 )
+        .attr("id", "h3")
+        .text("Businesses (details by button selection)");
 
     // variable u: map data to existing bars
     var u = svg.selectAll("rect")
