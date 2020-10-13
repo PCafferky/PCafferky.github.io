@@ -51,9 +51,9 @@ h4 {
 <script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 30, right: 30, bottom: 200, left: 60},
-    width = 560 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 30, right: 50, bottom: 120, left: 60},
+    width = 550 - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -83,6 +83,9 @@ function update(selectedVar) {
 
   // Parse the Data
   d3.csv("https://PCafferky.github.io/27_Neighborhoods_Pivot_Percs.csv", function(data) {
+
+    // sort data
+      data.sort((a, b) => d3.descending(a.selectedVar, b.selectedVar));
 
     // X axis
     x.domain(data.map(function(d) { return d.lname; }))
