@@ -118,7 +118,13 @@ d3.csv("https://PCafferky.github.io/08_AllBusinessBuffers_WithCounts.csv", funct
     .append("circle")
       .attr("cx", function (d) { return x(d.Lat); } )
       .attr("cy", function (d) { return y(d.DistDowntown); } )
-      .style("opacity", 0.7)
+      .style("opacity",function(d) {
+    if (d.TempOrPerm == 1) {
+      return .9;
+    } else {
+      return .6;
+    }
+  })
       .attr("r", function(d) {
     if (d.TempOrPerm == 1) {
       return 4;
@@ -128,18 +134,24 @@ d3.csv("https://PCafferky.github.io/08_AllBusinessBuffers_WithCounts.csv", funct
   })
       .attr("fill", function(d) {
     if (d.TempOrPerm == 1) {
-      return "#ffbb33";
+      return "#ffd54f";
     } else {
-      return "#90caf9";
+      return "#929fba";
     }
-
+  })
+    .attr("stroke", function(d) {
+    if (d.TempOrPerm == 1) {
+    return "#ffa000";
+    } else {
+    return "#7283a7";
+    }
   })
 
   // Handmade legend
-  svg.append("circle").attr("cx",420).attr("cy",50).attr("r", 3).style("fill", "#90caf9")
-  svg.append("circle").attr("cx",420).attr("cy",80).attr("r", 6).style("fill", "#ffbb33")
-  svg.append("text").attr("x", 435).attr("y", 50).text("Open Business").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", 435).attr("y", 80).text("Closed Business").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("circle").attr("cx",420).attr("cy",50).attr("r", 6).style("fill", "ffd54f").style("stroke", "#ffa000").attr("opacity", .8)
+  svg.append("circle").attr("cx",420).attr("cy",80).attr("r", 3).style("fill", "#929fba").style("stroke", "#7283a7").attr("opacity", .6)
+  svg.append("text").attr("x", 435).attr("y", 50).text("Closed Business").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("text").attr("x", 435).attr("y", 80).text("Open Business").style("font-size", "15px").attr("alignment-baseline","middle")
 
 
 })
