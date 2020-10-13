@@ -51,8 +51,8 @@ h4 {
 <script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 30, right: 50, bottom: 120, left: 60},
-    width = 550 - margin.left - margin.right,
+var margin = {top: 30, right: 50, bottom: 120, left: 70},
+    width = 560 - margin.left - margin.right,
     height = 450 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
@@ -135,7 +135,7 @@ function update(selectedVar) {
 //
 // }
         .attr("fill", function(d) {
-        if (d.lname == "Downtown" ||d.lname == "Federal Hill" ||d.lname == "Fox Point" || d.lname == "Silver Lake") {return "#ffc107"}
+        if (d.lname == "Downtown" ||d.lname == "Federal Hill" ||d.lname == "Fox Point") {return "#ffc107"}
         else if (d.lname == "Blackstone" || d.lname == "Lower South Providence" || d.lname == "Charles" || d.lname == "Silver Lake" || d.lname == "College Hill" || d.lname == "Elmwood" || d.lname == "Mount Pleasant" || d.lname == "Olneyville" || d.lname == "Washington Park") {return "#ffe082"}
         else {
         return "#929fba";
@@ -146,8 +146,8 @@ function update(selectedVar) {
   svg.append("rect").attr('x', 340).attr('y', 370).attr('width', 20).attr('height', 10).style("fill", "#ffc107")
   svg.append("rect").attr('x', 340).attr('y', 390).attr('width', 20).attr('height', 10).style("fill", "#ffe082")
   svg.append("rect").attr('x', 340).attr('y', 410).attr('width', 20).attr('height', 10).style("fill", "#929fba")
-  svg.append("text").attr("x", 365).attr("y", 376).text(">1 Closed Businesses").style("font-size", "12px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", 365).attr("y", 396).text("1 Closed Business").style("font-size", "12px").attr("alignment-baseline","middle")
+  svg.append("text").attr("x", 365).attr("y", 376).text("4-10 Closed Businesses").style("font-size", "12px").attr("alignment-baseline","middle")
+  svg.append("text").attr("x", 365).attr("y", 396).text("1-3 Closed Businesses").style("font-size", "12px").attr("alignment-baseline","middle")
   svg.append("text").attr("x", 365).attr("y", 416).text("0 Closed Businesses").style("font-size", "12px").attr("alignment-baseline","middle")
 
     })
