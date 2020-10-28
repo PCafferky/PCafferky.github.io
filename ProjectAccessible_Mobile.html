@@ -223,8 +223,8 @@
          <br>
          <h1>New York City's  Subway has an <br> <span>Accessibility</span> Problem
          </h1>
-         <h3>authors: patricia cafferky + angelica door
-         </h3>
+         <h4>authors: patricia cafferky + angelica door
+         </h4>
        </div>
 
     <!-- Left Column -->
@@ -328,10 +328,10 @@ var PVDTempClosedurl = 'https://raw.githubusercontent.com/PCafferky/PCafferky.gi
 
 //3. Create SVG Canvas
 //3.1 Width and height of the whole visualization
-var width = 650
+var width = 600
 var height = 650
 
-// SVG NUMBER 1: MAP OF BUSINESSES
+// SVG NUMBER 1: MAP OF STATIONS
 
 var svg = d3.select("div#firstvisualdiv")
             .append("svg")
@@ -339,28 +339,30 @@ var svg = d3.select("div#firstvisualdiv")
             .attr("height", height)
             // .attr("class", "object2opacity")
 
-
-var PVDRoadsG=svg.append("g")
-var PVDRiverG=svg.append("g")
-var PVDNeighborhoodsG=svg.append("g")
-var PVDBorderG=svg.append("g")
-var PVDAllBusinessesG=svg.append("g")
-var PVDAllBusinesses2G=svg.append("g")
-var PVDClosedBusinessesG=svg.append("g")
-var PVDTempClosedG=svg.append("g")
-var BusinessesBigG=svg.append("g")
-                  .attr("class", "object1opacity")
-var BusinessesBigCLOSEDG=svg.append("g")
+var StatesG=svg.append("g")
+var CensusTractsG=svg.append("g")
+var WalkshedsElderlyG=svg.append("g")
+                  .attr("class", "object4opacity")
+var WalkshedsDisabledG=svg.append("g")
+                  .attr("class", "object5opacity")
+var WalkshedsChildrenG=svg.append("g")
+                  .attr("class", "object6opacity")
+var BoroughG=svg.append("g")
+var SuwayLineG=svg.append("g")
+var SuwayStationsPinkG=svg.append("g")
+var SuwayStationsG=svg.append("g")
                   .attr("class", "object2opacity")
+var SuwayStationsLightG=svg.append("g")
+                  .attr("class", "object8opacity")
+var SuwayStationsBigG=svg.append("g")
+                  .attr("class", "object7opacity")
 
-
-// Set projection
 
 var albersProjection = d3.geoAlbers()
-  .scale(350000)
-  .rotate([71.42, 0])
-  .center([0,41.816])
-  .translate([width/2, height/2])
+  .scale(90000)
+  .rotate([74.06, 0])
+  .center([0,40.88])
+  .translate([width/10, height/10])
 
 var geoPathBig = d3.geoPath()
     .projection(albersProjection)
@@ -371,172 +373,186 @@ var geoPath = d3.geoPath()
   .pointRadius(3)
 
 
-d3.json(PVDRoadsurl).then(function(PVDNeighbor){
-  PVDRoadsG.selectAll("path")
-    .data(PVDNeighbor.geometries)
+d3.json(StateLinesurl).then(function(NYCNeighbor){
+  StatesG.selectAll("path")
+    .data(NYCNeighbor.features)
     .enter()
     .append("path")
     .attr("fill", "none")
     .attr("stroke", "#bdbdbd")
-    .attr("stroke-width", .5)
     .attr("d", geoPath)
 })
 
-
-d3.json(PVDRiverurl).then(function(PVDNeighbor){
-  PVDRiverG.selectAll("path")
-    .data(PVDNeighbor.geometries)
-    .enter()
-    .append("path")
-    .attr("fill", "#b2dfdb")
-    .attr("stroke", "none")
-    .attr("opacity", .7)
-    .attr("d", geoPath)
-})
-
-var color = d3.scaleThreshold()
-  .domain(d3.range(0, .2))
-  .range(d3.schemeBlues[9]);
-
-d3.json(PVDNeighborhoodsurl).then(function(PVDNeighbor){
-  PVDNeighborhoodsG.selectAll("path")
-    .data(PVDNeighbor.features)
-    .enter()
-    .append("path")
-    .attr("fill", "none")
-    .attr("stroke", "black")
-    .attr("stroke-width", .4)
-    .attr("d", geoPath);
-})
-
-//Labels for map
-svg.append("text").attr("x", 200).attr("y", 140).text("ELMHURST").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 235).attr("y", 100).text("WANSKUCK").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 155).attr("y", 190).text("MOUNT").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 143).attr("y", 200).text("PLEASANT").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 115).attr("y", 230).text("MANTON").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 310).attr("y", 100).text("CHARLES").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 233).attr("y", 245).text("VALLEY").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 180).attr("y", 290).text("OLNEYVILLE").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 115).attr("y", 320).text("HARTFORD").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 255).attr("y", 295).text("FEDERAL HILL").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 325).attr("y", 300).text("DOWNTOWN").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 282).attr("y", 215).text("SMITH HILL").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 400).attr("y", 100).text("HOPE").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 350).attr("y", 160).text("MOUNT HOPE").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 435).attr("y", 160).text("BLACKSTONE").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 455).attr("y", 240).text("WAYLAND").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 407).attr("y", 300).text("FOX POINT").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 370).attr("y", 235).text("COLLEGE HILL").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 140).attr("y", 365).text("SILVER LAKE").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 240).attr("y", 365).text("WEST END").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 325).attr("y", 360).text("UPPER S. PVD").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 340).attr("y", 410).text("LOWER S. PVD").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 300).attr("y", 450).text("ELMWOOD").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 250).attr("y", 475).text("RESERVOIR").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 335).attr("y", 525).text("SOUTH").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 330).attr("y", 535).text("ELMWOOD").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 400).attr("y", 470).text("WASHINGTON").style("font-size", "10px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 420).attr("y", 480).text("PARK").style("font-size", "10px").attr("alignment-baseline","middle")
-
-//Map Legend
-svg.append("circle").attr("cx",105).attr("cy",540).attr("r", 6).style("fill", "#ffd54f").style("stroke", "#ffa000")
-svg.append("circle").attr("cx",105).attr("cy",570).attr("r", 6).style("fill", "#929fba").style("stroke", "#7283a7")
-svg.append("text").attr("x", 125).attr("y", 540).text("Closed Business").style("font-size", "15px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 125).attr("y", 570).text("Open Business").style("font-size", "15px").attr("alignment-baseline","middle")
-
-
-d3.json(PVDBorderurl).then(function(PVDNeighbor){
-  PVDBorderG.selectAll("path")
-    .data(PVDNeighbor.geometries)
-    .enter()
-    .append("path")
-    .attr("fill", "none")
-    .attr("stroke", "black")
-    .attr("stroke-width", 1.5)
-    .attr("d", geoPath)
- })
-
-
-d3.json(PVDAllBusinessesurl).then(function(PVDNeighbor){
-  PVDAllBusinessesG.selectAll("path")
-    .data(PVDNeighbor.features)
+// ELEDERLY POPULATION
+d3.json(NYCWalkshedElderlysurl).then(function(NYCNeighbor){
+  WalkshedsElderlyG.selectAll("path")
+    .data(NYCNeighbor.features)
     .enter()
     .append("path")
     .attr("fill", function(d) {
-         if (d.properties.CLOSED == 1 || d.properties.Temp_CLOSE == 1) {return "none"}
-         else { return "#929fba" };
+         if (d.properties.SUM_Pro_Ov >= 2616) {return "#757575"}
+         else if (d.properties.SUM_Pro_Ov < 2616 && d.properties.SUM_Pro_Ov >= 1527) {return "#bdbdbd"}
+         else if (d.properties.SUM_Pro_Ov < 1527 && d.properties.SUM_Pro_Ov >= 699) {return "#e0e0e0"}
+         else {return "#eeeeee" };
        })
-    .attr("opacity", .6)
     .attr("stroke", function(d) {
-         if (d.properties.CLOSED == 1 || d.properties.Temp_CLOSE == 1) {return "none"}
-         else { return "#7283a7" };
+         if (d.properties.FacilityID == 1486 || d.properties.FacilityID == 1788 || d.properties.FacilityID == 1565 || d.properties.FacilityID == 1660 || d.properties.FacilityID == 1746 ) {return "#ffff00"}
+         else {return "white" };
        })
+       .attr("stroke-opacity", function(d) {
+            if (d.properties.FacilityID == 1486 || d.properties.FacilityID == 1788 || d.properties.FacilityID == 1565 || d.properties.FacilityID == 1660 || d.properties.FacilityID == 1746 ) {return "1"}
+            else {return ".5" };
+          })
+    .attr("stroke-width",function(d) {
+         if (d.properties.FacilityID == 1486 || d.properties.FacilityID == 1788 || d.properties.FacilityID == 1565 || d.properties.FacilityID == 1660 || d.properties.FacilityID == 1746 ) {return "1.5"}
+         else {return ".8" };
+       })
+    .attr("d", geoPath)
+})
+
+// DISABLED POPULATION
+d3.json(NYCWalkshedDisabledsurl).then(function(NYCNeighbor){
+  WalkshedsDisabledG.selectAll("path")
+    .data(NYCNeighbor.features)
+    .enter()
+    .append("path")
+    .attr("fill", function(d) {
+         if ((((d.properties.SUM_Pro_Di)/(d.properties.SUM_Pro_Sa))*(d.properties.SUM_Pro_To)) >= 2152) {return "#757575"}
+         else if ((((d.properties.SUM_Pro_Di)/(d.properties.SUM_Pro_Sa))*(d.properties.SUM_Pro_To))  < 2152 && (((d.properties.SUM_Pro_Di)/(d.properties.SUM_Pro_Sa))*(d.properties.SUM_Pro_To)) >= 1306) {return "#bdbdbd"}
+         else if ((((d.properties.SUM_Pro_Di)/(d.properties.SUM_Pro_Sa))*(d.properties.SUM_Pro_To))  < 1306 && (((d.properties.SUM_Pro_Di)/(d.properties.SUM_Pro_Sa))*(d.properties.SUM_Pro_To))  >= 566) {return "#e0e0e0"}
+         else {return "#eeeeee" };
+       })
+     .attr("stroke", function(d) {
+          if (d.properties.FacilityID == 1691 || d.properties.FacilityID == 1788 || d.properties.FacilityID == 1565 || d.properties.FacilityID == 1595 || d.properties.FacilityID == 1486 || d.properties.FacilityID == 1682) {return "#ffff00"}
+          else {return "white" };
+        })
+        .attr("stroke-opacity", function(d) {
+             if (d.properties.FacilityID == 1691 || d.properties.FacilityID == 1788 || d.properties.FacilityID == 1565 || d.properties.FacilityID == 1595 || d.properties.FacilityID == 1486 || d.properties.FacilityID == 1682) {return "1"}
+             else {return ".5" };
+           })
+     .attr("stroke-width",function(d) {
+          if (d.properties.FacilityID == 1691 || d.properties.FacilityID == 1788 || d.properties.FacilityID == 1565 || d.properties.FacilityID == 1595 || d.properties.FacilityID == 1486 || d.properties.FacilityID == 1682) {return "1.5"}
+          else {return ".8" };
+        })
+    .attr("d", geoPath)
+})
+
+//CHILDREN POPULATION
+d3.json(NYCWalkshedChildrensurl).then(function(NYCNeighbor){
+  WalkshedsChildrenG.selectAll("path")
+    .data(NYCNeighbor.features)
+    .enter()
+    .append("path")
+    .attr("fill", function(d) {
+         if (d.properties.SUM_Pro_5l >= 1316) {return "#757575"}
+         else if (d.properties.SUM_Pro_5l < 1316 && d.properties.SUM_Pro_5l >= 819) {return "#bdbdbd"}
+         else if (d.properties.SUM_Pro_5l < 818 && d.properties.SUM_Pro_5l >= 329) {return "#e0e0e0"}
+         else {return "#eeeeee" };
+       })
+     .attr("stroke", function(d) {
+          if (d.properties.FacilityID == 1783 || d.properties.FacilityID == 1608 || d.properties.FacilityID == 1730 || d.properties.FacilityID == 1811 || d.properties.FacilityID == 1609 || d.properties.FacilityID == 1682) {return "#ffff00"}
+          else {return "white" };
+        })
+        .attr("stroke-opacity", function(d) {
+             if (d.properties.FacilityID == 1783 || d.properties.FacilityID == 1608 || d.properties.FacilityID == 1730 || d.properties.FacilityID == 1811 || d.properties.FacilityID == 1609 || d.properties.FacilityID == 1682) {return "1"}
+             else {return ".5" };
+           })
+     .attr("stroke-width",function(d) {
+          if (d.properties.FacilityID == 1783 || d.properties.FacilityID == 1608 || d.properties.FacilityID == 1730 || d.properties.FacilityID == 1811 || d.properties.FacilityID == 1609 || d.properties.FacilityID == 1682) {return "1.5"}
+          else {return ".8" };
+        })
+    .attr("d", geoPath)
+})
+
+d3.json(NYCBoroughsurl).then(function(NYCNeighbor){
+  BoroughG.selectAll("path")
+    .data(NYCNeighbor.features)
+    .enter()
+    .append("path")
+    .attr("fill", "none")
+    .attr("stroke", "#333")
+    .attr("d", geoPath)
+})
+
+d3.json(NYCSubwayLinesurl).then(function(NYCNeighbor){
+  SuwayLineG.selectAll("path")
+    .data(NYCNeighbor.features)
+    .enter()
+    .append("path")
+    .attr("fill", "none")
+    .attr("stroke", "#e91e63")
+    .attr("d", geoPath)
+})
+
+
+d3.json(NYCSubwayStationsurl).then(function(NYCNeighbor){
+  SuwayStationsPinkG.selectAll("path")
+    .data(NYCNeighbor.features)
+    .enter()
+    .append("path")
+    .attr("fill", "#e91e63")
     .attr("d", geoPath)
  })
 
 
- d3.json(PVDClosedBusinessesurl).then(function(PVDNeighbor){
-   PVDClosedBusinessesG.selectAll("path")
-     .data(PVDNeighbor.features)
+d3.json(NYCSubwayStationsurl).then(function(NYCNeighbor){
+  SuwayStationsG.selectAll("path")
+    .data(NYCNeighbor.features)
+    .enter()
+    .append("path")
+    .attr("fill", function(d) {
+         if (d.properties.ADA == 0) {return "black"}
+         else { return "#e91e63" };
+       })
+    .attr("d", geoPath)
+ })
+
+ d3.json(NYCSubwayStationsurl).then(function(NYCNeighbor){
+   SuwayStationsLightG.selectAll("path")
+     .data(NYCNeighbor.features)
      .enter()
      .append("path")
-     .attr("fill", "#ffd54f")
-     .attr("opacity", .8)
-     .attr("stroke", "#ffa000")
-     .attr("stroke-width", 1)
+     .attr("fill", function(d) {
+          if (d.properties.ADA == 0 && d.properties.ADA_New == 0) {return "black"}
+          else if (d.properties.ADA == 0 && d.properties.ADA_New == 1) {return "#f8bbd0"}
+          else { return "#e91e63" };
+        })
      .attr("d", geoPath)
   })
 
-  d3.json(PVDTempClosedurl).then(function(PVDNeighbor){
-    PVDTempClosedG.selectAll("path")
-      .data(PVDNeighbor.features)
-      .enter()
-      .append("path")
-      .attr("fill", "#ffd54f")
-      .attr("opacity", .8)
-      .attr("stroke", "#ffa000")
-      .attr("stroke-width", 1)
-      .attr("d", geoPath)
-   })
 
-  // Mouseover layer for closed businesses only.
-  d3.json(PVDAllBusinessesurl).then(function(PVDNeighbor){
-    BusinessesBigG.selectAll("path")
-      .data(PVDNeighbor.features)
-      .enter()
-      .append("path")
-      .attr("fill", function(d) {
-           if (d.properties.CLOSED == 1 || d.properties.Temp_CLOSE == 1) {return "#ffd54f"}
-           else { return "none" };
-         })
-       .attr("stroke", function(d) {
-            if (d.properties.CLOSED == 1 || d.properties.Temp_CLOSE == 1) {return "#ffa000"}
-            else { return "none" };
-          })
-      .attr("d", geoPathBig)
-      .attr("opacity", 0.4)
-      .attr("class", "incident")
-      .attr("class", "object1opacity")
-      .on("mouseover", function(d){
-        div.transition()
-          .duration(200)
-          .style("opacity", .9);
-        div.html(d.properties.Yelp_Name)
-            .style("left", (d3.event.pageX))
-            .style("top", (d3.event.pageY ));
-        d3.select(this).attr("class", "incident hover")
-        if (d.properties.CLOSED == 1 || d.properties.Temp_CLOSE == 1) {return d3.select("h5").text(d.properties.Yelp_Name)}
-        else { return d3.select("h5").text("(Scroll over the closed businesses to see their name.)") };
-      })
-      .on("mouseout", function(d){
-        div.transition()
-                 .duration(500)
-                 .style("opacity", 0);
-        d3.select("h5").text("(Scroll over the closed businesses to see their name.)")
-        d3.select(this).attr("class", "object1opacity");
-      });
+d3.json(NYCSubwayStationsurl).then(function(NYCNeighbor){
+  SuwayStationsBigG.selectAll("path")
+    .data(NYCNeighbor.features)
+    .enter()
+    .append("path")
+    .attr("fill", function(d) {
+         if (d.properties.ADA == 0) {return "black"}
+         else { return "#e91e63" };
+       })
+    .attr("d", geoPathBig)
+    .attr("opacity", 0.4)
+    .attr("class", "incident")
+    .attr("class", "object1opacity")
+    .on("mouseover", function(d){
+      div.transition()
+        .duration(200)
+        .style("opacity", .9);
+      div.html(d.properties.name)
+          .style("left", (d3.event.pageX))
+          .style("top", (d3.event.pageY ));
+      d3.select(this).attr("class", "incident hover")
+      if (d.properties.ADA == 0) {return d3.select("h5").text(d.properties.name + " Station is NOT Accessible.")}
+      else { return d3.select("h5").text(d.properties.name + " Station is Accessible.") };
     })
+    .on("mouseout", function(d){
+      div.transition()
+               .duration(500)
+               .style("opacity", 0);
+      d3.select("h5").text("(Scroll over a Station to see if it's Accessible)")
+      d3.select(this).attr("class", "object1opacity");
+    });
+  })
 
 
 var controller = new ScrollMagic.Controller();
@@ -544,7 +560,7 @@ var controller = new ScrollMagic.Controller();
 //var Scene2  duration:"100%"
 
 new ScrollMagic.Scene({triggerElement: "#change1"})
-            .setClassToggle(".object1opacity", "active")
+            .setClassToggle(".object2opacity", "active")
             .addTo(controller);
 
 new ScrollMagic.Scene({triggerElement: "#change1"})
@@ -571,6 +587,13 @@ new ScrollMagic.Scene({triggerElement: "#change4"})
           .setClassToggle(".object6opacity", "active")
           .addTo(controller);
 
+  // new ScrollMagic.Scene({triggerElement: "#change3"})
+  //   .setClassToggle(".active", "object4opacity")
+  //   .addTo(controller);
+
+  // new ScrollMagic.Scene({triggerElement: "#change4"})
+  //   .setClassToggle(".object6opacity", "active")
+  //   .addTo(controller);
 
 
 </script>
