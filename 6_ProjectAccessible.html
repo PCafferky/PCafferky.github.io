@@ -2,27 +2,50 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>project accessible nyc</title>
+    <title>project accessible</title>
    	<script src="https://d3js.org/d3.v5.min.js"></script>
    	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Gelasio:300,400,500,600" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" type="text/css" crossorigin="">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js" crossorigin=""></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css">
+
     <style>
 
 		p {
-			font-family: 'Open Sans', sans-serif;
+      font-family: 'Open Sans', sans-serif;
 			color:#353536;
       font-size:20px;
 			font-weight:300;
-      margin-left:20px;
+      margin-left:60px;
 		}
+
+    .row.no-gutters {
+        margin-right: 0;
+        margin-left: 0;
+
+        & > [class^="col-"],
+        & > [class*=" col-"] {
+          padding-right: 0;
+          padding-left: 0;
+        }
+      }
 
     .container2 {
       width:100%;
-      /* height:650px;  */
+      /* height:650px; */ */
       padding-top:30px;
       padding-left:0px;
+      padding-right:0px;
+    }
+
+    .container {
+       width:100%;
+      /* height:650px; */
+      padding-top:30px;
+      padding-left:20px;
       padding-right:0px;
     }
 
@@ -54,34 +77,31 @@
 			font-size:50px;
 			font-weight:600;
 			line-height:1.3;
-      margin-left:20px;
-      /* margin-left:20px; */
+      margin-left:60px;
 		}
 
     span{
     color: #e91e63
     }
 
+
     h2 {
       font-family: 'Gelasio', serif;
 			font-size:35px;
 			font-weight:600;
 			line-height:1.3;
-      margin-left:20px;
-      /* margin-left:20px; */
+      margin-left:60px;
 		}
 
     h3 {
-      font-family: 'Open Sans', sans-serif;
-      font-size:15px;
-      font-weight:300;
+      font-family: 'Gelasio', serif;
+      font-size:26px;
+      font-weight:500;
       line-height:1;
-      color: lightgray;
-      margin-left:20px;
-      /* margin-left:20px; */
+      margin-left:60px;
     }
 
-    #firstvisualdiv, #secondvisualdiv {
+    #firstvisualdiv {
         position: -webkit-sticky;
           position: sticky;
           top: 4rem;
@@ -104,8 +124,9 @@
         color: lightgray;
         padding-left: 0px;
         z-index: 10;
-        margin-left:20px;
+        margin-left:60px;
       }
+
 
 /* Changable font */
       h5 {
@@ -113,8 +134,7 @@
         font-size:28px;
         font-weight:600;
         line-height:1.3;
-        margin-left:20px;
-        /* margin-left:20px; */
+        margin-left:60px;
       }
 
       h6.sticky {
@@ -131,32 +151,32 @@
         top: 1rem;
       }
 
-   .object1opacity, .object2opacity, .object3opacity, .object4opacity, .object5opacity, .object6opacity, .object7opacity, .object8opacity, .object9opacity {
-        opacity:0;
-        transition: opacity 1s;
-         -webkit-transition: opacity 1s;
-        }
+      .object1opacity, .object2opacity, .object3opacity, .object4opacity, .object5opacity, .object6opacity, .object7opacity, .object8opacity, .object9opacity {
+           opacity:0;
+           transition: opacity 1s;
+            -webkit-transition: opacity 1s;
+           }
 
-		.active {
-        	opacity:1;
-          transition: opacity 1s;
-           -webkit-transition: opacity 1s;
-    	}
+       .active {
+             opacity:1;
+             transition: opacity 1s;
+              -webkit-transition: opacity 1s;
+         }
 
-      div.tooltip {
-          position: relative;
-          text-align: left;
-          width: 300px;
-          height: 10px;
-          padding-left: 20px;
-          font-family: 'Gelasio', serif;
-          font-size:20px;
-          /* font: 24px sans-serif; */
-          background: white;
-          border: 0px;
-          border-radius: 4px;
-          pointer-events: none;
-      }
+         div.tooltip {
+             position: relative;
+             text-align: left;
+             width: 300px;
+             height: 10px;
+             padding-left: 20px;
+             font-family: 'Gelasio', serif;
+             font-size:20px;
+             /* font: 24px sans-serif; */
+             background: white;
+             border: 0px;
+             border-radius: 4px;
+             pointer-events: none;
+         }
 
       nav {
   			font-size:15px;
@@ -169,16 +189,13 @@
       .navbar-nav .nav-item.active .nav-link,
       .navbar-nav .nav-item:hover .nav-link {
         color: #e91e63;
-        /* border-bottom: 1px solid #f50057 */
+        /* border-bottom: 1px solid #ffbb33; */
       }
 }
 
-    main.container {
+    body.container {
     padding-top: 20px;
-    background-color: white;
-    margin-right: auto;
-    margin-left: auto;
-  }
+    background-color: black;
     }
 
     .container-fluid {
@@ -186,59 +203,56 @@
     padding-left:0;
     margin-right:auto;
     margin-left:auto
- }
-
+  }
 
 	</style>
 </head>
 <body>
   <nav class="navbar fixed-top navbar-expand navbar-light bg-white">
-    <a class="navbar-brand" href="#">project accessible nyc</a>
+    <a class="navbar-brand" href="#">COVID-19 Business Closures - A Case Study</a>
     <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span> -->
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-                  <li class="nav-item">
-                      <a class="nav-link mr-md-5" href="#">about us</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link mr-md-5" href="#">data</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link mr-md-5" href="#">center for architecture</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="#">contact</a>
-                  </li>
-              </ul>
+              <li class="nav-item">
+                  <a class="nav-link mr-md-5" href="#">about us</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link mr-md-5" href="#">data</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link mr-md-5" href="#">center for architecture</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">contact</a>
+              </li>
+          </ul>
     </div>
   </nav>
 
   <div>
+    <br><br>
       <img src="https://pcafferky.github.io/Wheelchair_stair.jpg" alt="Broken Elevator"  style="width:100%;">
-      <!--<img src="https://pcafferky.github.io/BW_elevator_wide1.jpg" alt="Broken Elevator"  style="width:100%;"> -->
+      <!-- <img src="https://pcafferky.github.io/BW_elevator_wide1.jpg" alt="Broken Elevator"  style="width:100%;"> -->
     </div>
-  <main role="main" class="container" >
+  <main role="main" class="container-fluid" >
+
 
 <!-- First Div -->
-     <div class="row">
-
+     <div class="row no-gutters">
        <div class="col-12">
-
          <br>
-         <h1>New York City's  Subway has an <br> <span>Accessibility</span> Problem
+         <h1>New York City's  Subway has <br>an <span>Accessibility</span> Problem
          </h1>
+         <h4>authors: patricia cafferky + angelica door
+         </h4>
+       </div>
 
-         <h3>authors: patricia cafferky + angelica door
-         </h3>
-     <!-- </div> -->
-   </div>
-       <!-- </div> -->
     <!-- Left Column -->
-<div class="row">
+    <div class="row no-gutters">
       <div class="col-6">
-     		<br><br>
+        <br><br>
        	  <p>Project Accessible NYC evaluates which metro stations in New York City are inaccessible compared to demographic data on populations of elderly, disabled, and families with young children in the stations' walksheds. It then questions if there is a correlation between which stations are accessible and other factors, such as the race/socio-economic status of residents in the stations' walksheds or station use rates. Based on this, we offer an idea of which subway stations should be prioritized for ADA compliance renovations or for additional bus routes to meet the demand of those who need elevator access.</p>
           <br>
           <p>The map to the right shows all of the subway stations in NYC, highlighted in<span> pink</span>. Scroll down to reveal which stations are ADA compliant, which are not, and which are planned for renovation, as well as how these stations map onto populations which likely need elevator access to subway stations the most.</p>
@@ -278,7 +292,7 @@
 
         <br>
        	<p>The poverty rate of working age New Yorkers with a disability is <span> 30.1% </span>, as compared to an 11.9% poverty rate for New Yorkers without a disability.</p>
-        <img src="https://pcafferky.github.io/NYC_Disability_Graphs.png" alt="Poverty Rates" style="width:500px;height:241.6px;">
+        <img src="https://pcafferky.github.io/NYC_Disability_Graphs.png" alt="Poverty Rates" style="width:560px;height:241.6px; padding-left:60px;">
        	<br><br>
         <p>This means a group which needs affordable transit options the most is also frequently physically unable to access it.</p>
         <br>
@@ -293,53 +307,68 @@
         <p>Some of the stations with the highest population of children under 5 which are NOT ACCESSIBLE and are NOT BEING RENOVATED are: <span> Flushing Ave Station </span> (G train), <span> 103rd St - Corona Plaza Station </span> (7 train), <span> 5oth St Station </span> (D train), <span> Ft Hamilton Pkwy Station </span> (D train), <span> 111th St Station </span> (7 train), and <span> Fordham Road Station </span> (B-D trains).</p>
         <br><br>
         <br><br>
-      </div>
 
+
+          <!-- <button onclick="update('H_Vacant_1')">Percent Vacant Households</button>
+          <button onclick="update('MHI_Tot_Di')">Median Household Income</button>
+          <button onclick="update('R_White_Pe')">Percent White</button> -->
+    </div>
 
     <!-- Right Column -->
-    <div class="col-6">
+    <div class="col-1">
+    </div>
+    <div class="col-5">
       <br><br>
       <div id="firstvisualdiv">
          <!-- <img class="sticky"> -->
-         <!-- <img src="https://pcafferky.github.io/AAR_Legend.jpg" alt="Legend"  style="width:100%;"> -->
       </div>
     </div>
   </div>
 </div>
 
-  </main>
-  <!-- /.container -->
-  <!-- <div class="container2">
-      <img src=" https://pcafferky.github.io/BW_stroller1.jpg" alt="Stroller on Stairs"  style="width:100%;">
-  </div> -->
+<!-- </main><! -->
+
+
 
   <div>
-      <img src="https://pcafferky.github.io/Child_Stairs_bw.jpg" alt="Stroller on Stairs"  style="width:100%;" padding-left = "0px;" padding-right = "0px;" >
-      <br><br>
-  </div>
-  <main role="main" class="container" >
+    <br><br>
+    <img src="https://pcafferky.github.io/Child_Stairs_bw.jpg" alt="Stroller on Stairs"  style="width:100%;" padding-left = "0px;" padding-right = "0px;" >
+    <br><br>
+</div>
 
-<!-- First Div -->
-     <div class="row">
-    <!-- Left Column -->
-      <div class="col-12">
-        <!-- <img src="/Users/patriciacafferky/Documents/2020_Spring Semester/11454_BigData/BigDataFinal/HTMLtest/AAR_finalpicks/Child_Stairs_bw.jpg" alt="Stroller on Stairs"  style="width:100%;" padding-left = "0px;" padding-right = "0px;" >
-        <br><br> -->
-        <div class="col-12">
-          <h2 id="change10">IS THERE A CORRELATION BETWEEN <br> ACCESSIBILITY AND DEMOGRAPHICS?</h2>
-          <br>
-          <h5 id="change10">Populations by Subway Station Walkshed</h5>
-            <img src="https://pcafferky.github.io/AAR_Legend_Bubbles.jpg" alt="Bubble Legend"  style="width:200px;height:53.3px; margin-left:20px;">
-          <div id="secondvisualdiv">
-           <iframe src="https://adooraaa.github.io/AAR-Bubble-Chart/" height="1400" width="1200" frameborder = 0;></iframe>
-        </div>
-      </div>
+<div class="container" >
+  <div>
+    <h2 id="change10">IS THERE A CORRELATION BETWEEN <br> ACCESSIBILITY AND DEMOGRAPHICS?</h2>
+    <br>
+    <h5 id="change10">Populations by Subway Station Walkshed</h5>
+        <img src="https://pcafferky.github.io/AAR_Legend_Bubbles.jpg" alt="Bubble Legend"  style="width:200px;height:53.3px; margin-left:60px;">
+
+      <iframe src="https://pcafferky.github.io/AAR_Bubble%20Visualization_Smaller.html" height="1400" width="700" frameborder = 0; ></iframe>
     </div>
+</div>
+
 </main><!-- /.container -->
+<!-- /.container -->
+      <!-- <div>
+      <iframe src="https://adooraaa.github.io/AAR-Bubble-Chart/" height="1400" width="1200" frameborder = 0; ></iframe>
+     </div>  -->
+
+    <!-- <div>
+      <h2 id="change10">IS THERE A CORRELATION BETWEEN <br> ACCESSIBILITY AND DEMOGRAPHICS?</h2>
+      <br>
+      <h5 id="change10">Populations by Subway Station Walkshed</h5>
+          <img src="https://pcafferky.github.io/AAR_Legend_Bubbles.jpg" alt="Bubble Legend"  style="width:200px;height:53.3px; margin-left:60px;">
+     <iframe src="https://adooraaa.github.io/AAR-Bubble-Chart/" height="1400" width="1200" frameborder = 0; ></iframe>
+    </div> -->
+
+
+
+
+
+
 </body>
 
 <script type="text/javascript">
-
 
 //Our D3 code will go here.
 
@@ -356,6 +385,7 @@ var NYCSubwayLinesurl = 'https://raw.githubusercontent.com/PCafferky/PCafferky.g
 var NYCWalkshedElderlysurl = 'https://raw.githubusercontent.com/PCafferky/PCafferky.github.io/master/4_NYC_StationWalksheds_convert.json'
 var NYCWalkshedChildrensurl = 'https://raw.githubusercontent.com/PCafferky/PCafferky.github.io/master/4_NYC_StationWalksheds_convert.json'
 var NYCWalkshedDisabledsurl = 'https://raw.githubusercontent.com/PCafferky/PCafferky.github.io/master/4_NYC_StationWalksheds_convert.json'
+
 
 
 
